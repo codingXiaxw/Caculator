@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private double dou = 0;  //接收结果
 
 
-    private boolean flag;
+
+    private boolean flag;//标志服，判断是否清空编辑框
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     private void initView()
     {
+        flag=true;
+
+
         btn_0 = (Button) findViewById(R.id.btn_0);
         btn_1 = (Button) findViewById(R.id.btn_1);
         btn_2 = (Button) findViewById(R.id.btn_2);
@@ -92,84 +96,79 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onClick(View v)
-    {
-        String str=et_showview.getText().toString();
-        switch(v.getId())
-        {
-            case R.id.btn_0:
-            case R.id.btn_1:
-            case R.id.btn_2:
-            case R.id.btn_3:
-            case R.id.btn_4:
-            case R.id.btn_5:
-            case R.id.btn_6:
-            case R.id.btn_7:
-            case R.id.btn_8:
-            case R.id.btn_9:
-                if(str.charAt(0)==' ')
-                {
-                    et_showview.setText(((Button)v).getText());
-                }
-                if(str.charAt(0)=='0'&&!str.contains(" ")&&!str.contains("."))
-                {
-                    et_showview.setText(((Button)v).getText());
+    public void onClick(View v) {
+        String str = et_showview.getText().toString();
+            switch (v.getId()) {
+                case R.id.btn_0:
+                case R.id.btn_1:
+                case R.id.btn_2:
+                case R.id.btn_3:
+                case R.id.btn_4:
+                case R.id.btn_5:
+                case R.id.btn_6:
+                case R.id.btn_7:
+                case R.id.btn_8:
+                case R.id.btn_9:
+                    if (str.charAt(0) == ' ') {
+                        et_showview.setText(((Button) v).getText());
+                    }
+                    if (str.charAt(0) == '0' && !str.contains(" ") && !str.contains(".")) {
+                        et_showview.setText(((Button) v).getText());
+                    } else {
+                        et_showview.setText(str + ((Button) v).getText());
+                    }
 
-                }else
-                {
-                    et_showview.setText(str + ((Button) v).getText());
-                }
-                break;
-            case R.id.btn_point:
-                if(str=="0")
-                {
-                    et_showview.setText("0" +".");
-                }else if(str.contains(".")||str.charAt(str.length()-1)==' ')
-                {
-                    et_showview.setText(str);
-                }else
-                {
-                    et_showview.setText(str+".");
-                }
-                break;
-            case R.id.btn_pluse:
-            case R.id.btn_minus:
-            case R.id.btn_multiply:
-            case R.id.btn_divide:
-                if(str.charAt((str.length()-1))==' ')
-                {
-                    et_showview.setText(str.substring(0, str.length() - 3) + " "+((Button) v).getText()+" ");
-                }else {
-                    et_showview.setText(str + " " + ((Button) v).getText() + " ");
-                }
-                break;
-            case R.id.btn_del:
-                if(str.length()==1){
+                    break;
+                case R.id.btn_point:
+                    if (str == "0") {
+                        et_showview.setText("0" + ".");
+                    } else if (str.contains(".") || str.charAt(str.length() - 1) == ' ') {
+                        et_showview.setText(str);
+                    } else {
+                        et_showview.setText(str + ".");
+                    }
+                    break;
+                case R.id.btn_pluse:
+                case R.id.btn_minus:
+                case R.id.btn_multiply:
+                case R.id.btn_divide:
+                    if (str.charAt((str.length() - 1)) == ' ') {
+                        et_showview.setText(str.substring(0, str.length() - 3) + " " + ((Button) v).getText() + " ");
+                    } else {
+                        et_showview.setText(str + " " + ((Button) v).getText() + " ");
+                    }
+                    break;
+                case R.id.btn_del:
+                    if (str.length() == 1) {
+                        et_showview.setText("0");
+                    } else {
+                        et_showview.setText(str.substring(0, str.length() - 1));
+                    }
+                    break;
+                case R.id.btn_clear:
                     et_showview.setText("0");
-                }else {
-                    et_showview.setText(str.substring(0, str.length() - 1));
-                }
-                break;
-            case R.id.btn_clear:
-                et_showview.setText("0");
-                break;
-            case R.id.btn_equal:
-                getResult();
-                break;
+                    break;
+                case R.id.btn_equal:
+                    getResult();
 
-        }
+                    break;
+                default:
+                    break;
+            }
+
     }
     private void getResult()
     {
+        flag=false;
         String result=et_showview.getText().toString();
         if(!result.contains(" "))
         {
             if(result.equals("520"))
             {
-                et_showview.setText("Mrs Wang , I love you");
+                et_showview.setText("光光我爱你");
             }else if(result.equals("250"))
             {
-                et_showview.setText("王月容");
+                et_showview.setText("光光你是个250");
             }else {
                 return;
             }
@@ -206,10 +205,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     if(dou==520)
                     {
-                        et_showview.setText("Mrs Wang , I love you");
+                        et_showview.setText("光光我爱你");
                     }else if(dou==250)
                     {
-                        et_showview.setText("王月容");
+                        et_showview.setText("光光你是个250");
                     }else {
                         if(dou>999999999999999d){
                             et_showview.setText("999999999999999d");
