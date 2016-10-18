@@ -13,4 +13,5 @@
 控制运算结果的位数在0~12位之间。
 
 ### 界面展示
-![](http://od2xrf8gr.bkt.clouddn.com/caculator.png)
+
+<img src="http://od2xrf8gr.bkt.clouddn.com/caculator.png" width="50%" height="50%">
